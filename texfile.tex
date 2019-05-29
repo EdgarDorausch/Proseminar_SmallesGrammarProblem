@@ -1,28 +1,25 @@
-\documentclass{beamer}
+\documentclass[xcolor=dvipsnames]{beamer}
 
-% deutsche Silbentrennung
-\usepackage[ngerman]{babel}
-
+\usepackage{xcolor}
+\usepackage[ngerman]{babel} % deutsche Silbentrennung
+\usepackage[utf8]{inputenc} % wegen deutschen Umlauten
 \usepackage{pdfpages}
 \usepackage{graphicx}
 
-% wegen deutschen Umlauten
-\usepackage[utf8]{inputenc}
-
 \usetheme{metropolis}           % Use metropolis theme
 \title{The smallest grammar problem}
-\date{\today}
+\date{05. Juli 2019}
 \author{Edgar Dorausch}
 %\institute{Centre for Modern Beamer Themes}
 \begin{document}
 \maketitle
 
-
+\newcommand{\Gap}{$ $ \linebreak}
 
 
 \section{Motivation und Anwendung}
 
-\begin{frame}{Motivation und Anwendung}
+\begin{frame}{\secname}
 	\begin{itemize}[<+->]
 	%	\item \alert<4>{This is\only<4>{ really} important}
 		\item pattern recognition
@@ -32,9 +29,9 @@
 \end{frame}
 
 \section{Definitionen und Wiederholung}
-\begin{frame}{Definitionen und Wiederholung}
+\begin{frame}{\secname}
 	\begin{block}{Kontextfreie Grammatik}
-		$ $ \linebreak
+		\Gap
 		Eine KFG ist ein Quadrupel $(\Sigma,\Gamma,S,\Delta)$ mit
 		\begin{itemize}
 			%	\item \alert<4>{This is\only<4>{ really} important}
@@ -49,9 +46,9 @@
 	
 \end{frame}
 
-\begin{frame}{Definitionen und Wiederholung}
+\begin{frame}{\secname}
 \begin{alert}{Besonderheit!:}
-	$ $ \linebreak
+	\Gap
 	Die Grammatiken sollen nur ein Wort erzeugen. Deshalb:
 	\begin{itemize}
 		
@@ -61,32 +58,32 @@
 \end{alert}
 \end{frame}
 
-\begin{frame}{Definitionen und Wiederholung}
+\begin{frame}{\secname}
 \begin{block}{Expansion  eines Strings $\alpha$}
-	$ $ \linebreak
+	\Gap
 	Erhält man durch erschöpfendes Anwenden der Regeln in einer Grammatik bis nur noch Terminale enthalten sind. \linebreak
 	Notation: $\langle \alpha \rangle$
 \end{block}
 \end{frame}
 
-\begin{frame}{Definitionen und Wiederholung}
+\begin{frame}{\secname}
 \begin{block}{Expansionslänge}
-	$ $ \linebreak
+	\Gap
 	Anzahl der Zeichen in der Expansion eines Strings $\alpha$ \linebreak
 	Notation: $[\alpha]  = \lvert \langle \alpha \rangle \lvert$
 \end{block}
 \end{frame}
 
-\begin{frame}{Definitionen und Wiederholung}
+\begin{frame}{\secname}
 \begin{block}{Größe einer Grammatik G}
-	$ $ \linebreak
+	\Gap
 	Anzahl der Zeichen in den rechten Seiten der Grammatikregeln\linebreak
 	Notation: $m = \lvert G \lvert = \sum\limits_{(T \rightarrow \alpha) \in \Delta} \langle \alpha \rangle$ \linebreak $ $\linebreak
 	Größe der kleinsten Gramatik für einen String: $m^*$
 \end{block}
 \end{frame}
 
-\begin{frame}{Definitionen und Wiederholung}
+\begin{frame}{\secname}
 \begin{block}{Beispiel}
 	$$
 	G \colon \begin{Bmatrix} 
@@ -101,9 +98,9 @@
 \end{block}
 \end{frame}
 
-\begin{frame}{Definitionen und Wiederholung}
+\begin{frame}{\secname}
 \begin{block}{Approximation Ratio}
-	$ $ \linebreak
+	\Gap
 	Sei $G_A$ die Grammatik, die von einem Algorithmus $A$ erzeugt wird.
 	$$
 	a(n) = \alert<2>{\max\limits_{\alpha \in \Sigma^n}}\frac{
@@ -121,7 +118,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}{Definitionen und Wiederholung}
+\begin{frame}{\secname}
 \begin{table}
 	\caption{Landau Notation}
 	\begin{tabular}{ r p{3.5cm} l}
@@ -137,18 +134,45 @@
 \end{frame}
 
 
+
+\section{Vorüberlegungen}
+
+\begin{frame}{\secname}
+	\newcommand{\LowerBound}{\textcolor{TealBlue}{f_l(n)}}
+	\newcommand{\UpperBound}{\textcolor{Salmon}{f_u(n)}}
+
+	\begin{block}{Lower bound bestimmen}
+		\begin{itemize}[<+->]
+			\item Definiere $\alpha$ \textcolor{gray}{(n = $|\alpha |$)}
+			\item Bestimme lower bound von $m$ \linebreak \textcolor{gray}{$m \in \Omega(\LowerBound)$}
+			\item Bestimme upper bound von $m^*$ \linebreak \textcolor{gray}{$m^* \in \mathcal{O}(\UpperBound)$}
+		\end{itemize}
+		\only<4>{
+			$\Rightarrow$
+			\fbox{
+			$a(n) \in \Omega(\frac{
+				\LowerBound
+			}{
+				\UpperBound
+			})$
+			}}
+	\end{block}
+	\end{frame}
+
+
+
 \section{Komplexität}
 	
-\begin{frame}{Komplexität}
+\begin{frame}{\secname}
 \begin{itemize}[<+->]
-	\item Vertex Cover lässt sich auf SGP reduziert
+	\item Vertex Cover lässt sich auf SGP reduzieren
 	\item Zusammenhang mit Addition Chains \textcolor{gray}{(nicht im Vortrag)}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{Komplexität}
+\begin{frame}{\secname}
 \begin{block}{Vertex Cover}
-	$ $ \linebreak
+	\Gap
 	Suche (minimale) Menge von Knoten, sodass jede Kante mindestens einen dieser Knoten enthält.\linebreak
 	$ $\linebreak
 	
