@@ -15,11 +15,18 @@
 \maketitle
 
 \newcommand{\Gap}{$ $ \linebreak}
+\newcommand{\FrameName}{
+	\ifthenelse{\equal{\subsecname}{}}{
+		\secname
+	}{
+		\secname \thinspace -\thinspace\subsecname
+	}
+}
 
 
 \section{Motivation und Anwendung}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 	\begin{itemize}[<+->]
 	%	\item \alert<4>{This is\only<4>{ really} important}
 		\item pattern recognition
@@ -29,7 +36,7 @@
 \end{frame}
 
 \section{Definitionen und Wiederholung}
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 	\begin{block}{Kontextfreie Grammatik}
 		\Gap
 		Eine KFG ist ein Quadrupel $(\Sigma,\Gamma,S,\Delta)$ mit
@@ -46,7 +53,7 @@
 	
 \end{frame}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{alert}{Besonderheit!:}
 	\Gap
 	Die Grammatiken sollen nur ein Wort erzeugen. Deshalb:
@@ -58,7 +65,7 @@
 \end{alert}
 \end{frame}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{block}{Expansion  eines Strings $\alpha$}
 	\Gap
 	Erhält man durch erschöpfendes Anwenden der Regeln in einer Grammatik bis nur noch Terminale enthalten sind. \linebreak
@@ -66,7 +73,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{block}{Expansionslänge}
 	\Gap
 	Anzahl der Zeichen in der Expansion eines Strings $\alpha$ \linebreak
@@ -74,7 +81,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{block}{Größe einer Grammatik G}
 	\Gap
 	Anzahl der Zeichen in den rechten Seiten der Grammatikregeln\linebreak
@@ -83,7 +90,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{block}{Beispiel}
 	$$
 	G \colon \begin{Bmatrix} 
@@ -98,7 +105,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{block}{Approximation Ratio}
 	\Gap
 	Sei $G_A$ die Grammatik, die von einem Algorithmus $A$ erzeugt wird.
@@ -118,7 +125,7 @@
 \end{block}
 \end{frame}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{table}
 	\caption{Landau Notation}
 	\begin{tabular}{ r p{3.5cm} l}
@@ -137,7 +144,7 @@
 
 \section{Vorüberlegungen}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 	\newcommand{\LowerBound}{\textcolor{TealBlue}{f_l(n)}}
 	\newcommand{\UpperBound}{\textcolor{Salmon}{f_u(n)}}
 
@@ -163,14 +170,14 @@
 
 \section{Komplexität}
 	
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{itemize}[<+->]
 	\item Vertex Cover lässt sich auf SGP reduzieren
 	\item Zusammenhang mit Addition Chains \textcolor{gray}{(nicht im Vortrag)}
 \end{itemize}
 \end{frame}
 
-\begin{frame}{\secname}
+\begin{frame}{\FrameName}
 \begin{block}{Vertex Cover}
 	\Gap
 	Suche (minimale) Menge von Knoten, sodass jede Kante mindestens einen dieser Knoten enthält.\linebreak
@@ -187,7 +194,29 @@
 \end{frame}
 
 \section{Algorithmen}
-	
 
+\subsection{LZ78}
+\begin{frame}{\FrameName}
+	\begin{block}{TODO}
+	\Gap
+	$a^2 + b^2 = c^2$
+\end{block}
+\end{frame}
+
+\subsection{global algorithms}
+\begin{frame}{\FrameName}
+	\begin{block}{TODO}
+	\Gap
+	$a^2 + b^2 = c^2$
+\end{block}
+\end{frame}
+
+\subsection{LZ77 variant}
+\begin{frame}{\FrameName}
+	\begin{block}{TODO}
+	\Gap
+	$a^2 + b^2 = c^2$
+\end{block}
+\end{frame}
 
 \end{document}
