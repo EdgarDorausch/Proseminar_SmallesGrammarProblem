@@ -23,6 +23,8 @@
 	}
 }
 
+\newcommand{\Fresh}{\ddagger}
+
 
 \section{Motivation und Anwendung}
 
@@ -187,11 +189,79 @@
 	\only<2>{\includegraphics[width=0.25\textwidth]{Images/VertexCover/wrong}}
 	\only<3>{\includegraphics[width=0.25\textwidth]{Images/VertexCover/wrongMarked} \alert{(Kein Vertex Cover!)}}
 	\only<4>{\includegraphics[width=0.25\textwidth]{Images/VertexCover/right}}
-	
-	
-	
 \end{block}
 \end{frame}
+
+\newcommand{\ExampleGraphV}{V = \{a,b,c,d\}}
+\newcommand{\ExampleGraphE}{E = 
+	\begin{Bmatrix}
+		\{a,b\},
+		\{a,c\},
+		\{b,c\},
+		\{b,d\}
+	\end{Bmatrix}
+}
+
+\begin{frame}{\FrameName}
+\begin{block}{Vertex Cover}
+	\Gap
+	$$\ExampleGraphV$$ 
+	$$\ExampleGraphE$$
+	\begin{center}
+		\includegraphics[width=0.35\textwidth]{Images/VertexCover/blank}
+	\end{center}
+\end{block}
+\end{frame}
+
+\newcommand{\ProdRuleOne}[1]{(\# #1 \Fresh #1\#  \Fresh )^2}
+\newcommand{\ProdRuleTwo}[1]{\# #1 \#  \Fresh}
+\newcommand{\ProdRuleThree}[2]{\# #1 \# #2\#  \Fresh}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Vertex Cover}
+		\Gap
+		$
+		\alpha =
+		\textcolor{OrangeRed}{
+			\prod\limits_{v_i \in V}\ProdRuleOne{v_i}}
+		\textcolor{PineGreen}{
+			\prod\limits_{v_i \in V}(\ProdRuleTwo{v_i})}
+		\textcolor{RoyalBlue}{
+				\prod\limits_{\{v_i,v_j\} \in E}(\ProdRuleThree{v_i}{v_j})}
+		$
+
+		\newcommand{\PhantomAlpha}{\phantom{\alpha_{Beispiel} = (}}
+		\newcommand{\ReductionExample}{
+			\Gap
+			$\ExampleGraphV; \ExampleGraphE$ \newline
+			\Gap
+			$
+				\alpha_{Beispiel} =
+				\textcolor{OrangeRed}{
+					\foreach \n in {a,b,c,d}{\ProdRuleOne{\n}}
+				} \linebreak
+				\PhantomAlpha
+				\textcolor{PineGreen}{
+					\foreach \n in {a,b,c,d}{\ProdRuleTwo{\n}}
+				} \linebreak
+				\PhantomAlpha
+				\textcolor{RoyalBlue}{
+					\ProdRuleThree{a}{b}
+					\ProdRuleThree{a}{c}
+					\ProdRuleThree{b}{c}
+					\ProdRuleThree{b}{d}
+				} \linebreak
+			$
+		}
+
+		% \only<1>{\phantom{\ReductionExample}}
+		\only<2>{\ReductionExample}
+
+	\end{block}
+	\end{frame}
+
+
+
 
 \section{Algorithmen}
 
