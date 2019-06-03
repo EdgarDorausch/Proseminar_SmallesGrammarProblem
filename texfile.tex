@@ -5,6 +5,7 @@
 \usepackage[utf8]{inputenc} % wegen deutschen Umlauten
 \usepackage{pdfpages}
 \usepackage{graphicx}
+\usepackage{pst-node}% http://ctan.org/pkg/pst-node
 
 \usetheme{metropolis}           % Use metropolis theme
 \title{The smallest grammar problem}
@@ -142,34 +143,6 @@
 \end{table}
 \end{frame}
 
-
-
-\section{Vorüberlegungen}
-
-\begin{frame}{\FrameName}
-	\newcommand{\LowerBound}{\textcolor{TealBlue}{f_l(n)}}
-	\newcommand{\UpperBound}{\textcolor{Salmon}{f_u(n)}}
-
-	\begin{block}{Lower bound bestimmen}
-		\begin{itemize}[<+->]
-			\item Definiere $\alpha$ \textcolor{gray}{(n = $|\alpha |$)}
-			\item Bestimme lower bound von $m$ \linebreak \textcolor{gray}{$m \in \Omega(\LowerBound)$}
-			\item Bestimme upper bound von $m^*$ \linebreak \textcolor{gray}{$m^* \in \mathcal{O}(\UpperBound)$}
-		\end{itemize}
-		\only<4>{
-			$\Rightarrow$
-			\fbox{
-			$a(n) \in \Omega(\frac{
-				\LowerBound
-			}{
-				\UpperBound
-			})$
-			}}
-	\end{block}
-	\end{frame}
-
-
-
 \section{Komplexität}
 	
 \begin{frame}{\FrameName}
@@ -218,59 +191,94 @@
 \newcommand{\ProdRuleThree}[2]{\# #1 \# #2\#  \Fresh}
 
 \begin{frame}{\FrameName}
-	\begin{block}{Vertex Cover}
+\begin{block}{Vertex Cover}
+	\Gap
+	$
+	\alpha =
+	\textcolor{OrangeRed}{
+		\prod\limits_{v_i \in V}\ProdRuleOne{v_i}}
+	\textcolor{PineGreen}{
+		\prod\limits_{v_i \in V}(\ProdRuleTwo{v_i})}
+	\textcolor{RoyalBlue}{
+			\prod\limits_{\{v_i,v_j\} \in E}(\ProdRuleThree{v_i}{v_j})}
+	$
+
+	\newcommand{\PhantomAlpha}{\phantom{\alpha_{Beispiel} = (}}
+	\newcommand{\ReductionExample}{
+		\Gap
+		$\ExampleGraphV; \ExampleGraphE$ \newline
 		\Gap
 		$
-		\alpha =
-		\textcolor{OrangeRed}{
-			\prod\limits_{v_i \in V}\ProdRuleOne{v_i}}
-		\textcolor{PineGreen}{
-			\prod\limits_{v_i \in V}(\ProdRuleTwo{v_i})}
-		\textcolor{RoyalBlue}{
-				\prod\limits_{\{v_i,v_j\} \in E}(\ProdRuleThree{v_i}{v_j})}
+			\alpha_{Beispiel} =
+			\textcolor{OrangeRed}{
+				\foreach \n in {a,b,c,d}{\ProdRuleOne{\n}}
+			} \linebreak
+			\PhantomAlpha
+			\textcolor{PineGreen}{
+				\foreach \n in {a,b,c,d}{\ProdRuleTwo{\n}}
+			} \linebreak
+			\PhantomAlpha
+			\textcolor{RoyalBlue}{
+				\ProdRuleThree{a}{b}
+				\ProdRuleThree{a}{c}
+				\ProdRuleThree{b}{c}
+				\ProdRuleThree{b}{d}
+			} \linebreak
 		$
+	}
 
-		\newcommand{\PhantomAlpha}{\phantom{\alpha_{Beispiel} = (}}
-		\newcommand{\ReductionExample}{
-			\Gap
-			$\ExampleGraphV; \ExampleGraphE$ \newline
-			\Gap
-			$
-				\alpha_{Beispiel} =
-				\textcolor{OrangeRed}{
-					\foreach \n in {a,b,c,d}{\ProdRuleOne{\n}}
-				} \linebreak
-				\PhantomAlpha
-				\textcolor{PineGreen}{
-					\foreach \n in {a,b,c,d}{\ProdRuleTwo{\n}}
-				} \linebreak
-				\PhantomAlpha
-				\textcolor{RoyalBlue}{
-					\ProdRuleThree{a}{b}
-					\ProdRuleThree{a}{c}
-					\ProdRuleThree{b}{c}
-					\ProdRuleThree{b}{d}
-				} \linebreak
-			$
-		}
+	% \only<1>{\phantom{\ReductionExample}}
+	\only<2>{\ReductionExample}
 
-		% \only<1>{\phantom{\ReductionExample}}
-		\only<2>{\ReductionExample}
-
-	\end{block}
-	\end{frame}
+\end{block}
+\end{frame}
 
 
 
 
 \section{Algorithmen}
 
-\subsection{LZ78}
+\subsection{Vorüberlegungen}
+
+\newcommand{\LowerBound}{\textcolor{TealBlue}{f_l(n)}}
+\newcommand{\UpperBound}{\textcolor{Salmon}{f_u(n)}}
+
 \begin{frame}{\FrameName}
-	\begin{block}{TODO}
-	\Gap
-	$a^2 + b^2 = c^2$
+\begin{block}{Lower bound bestimmen}
+	\begin{itemize}[<+->]
+		\item Definiere $\alpha$ \textcolor{gray}{(n = $|\alpha |$)}
+		\item Bestimme lower bound von $m$ \linebreak \textcolor{gray}{$m \in \Omega(\LowerBound)$}
+		\item Bestimme upper bound von $m^*$ \linebreak \textcolor{gray}{$m^* \in \mathcal{O}(\UpperBound)$}
+	\end{itemize}
+	\only<4>{
+		$\Rightarrow$
+		\fbox{
+		$a(n) \in \Omega(\frac{
+			\LowerBound
+		}{
+			\UpperBound
+		})$
+		}}
 \end{block}
+\end{frame}
+
+\subsection{LZ78}
+
+\begin{frame}{\FrameName}
+	\begin{block}{LZ78}
+	
+\end{block}
+\end{frame}
+
+
+
+\begin{frame}{\FrameName}
+	\only<1>{
+		\includegraphics[width=\textwidth]{Images/LZ78/blank}}
+	\only<2>{
+		\includegraphics[width=\textwidth]{Images/LZ78/withRef}}
+	\only<3>{
+		\includegraphics[width=\textwidth]{Images/LZ78/full}}
 \end{frame}
 
 \subsection{global algorithms}
@@ -285,7 +293,7 @@
 \begin{frame}{\FrameName}
 	\begin{block}{TODO}
 	\Gap
-	$a^2 + b^2 = c^2$
+	$a^2 + b^2 = r^2$
 \end{block}
 \end{frame}
 
