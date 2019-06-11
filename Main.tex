@@ -1,0 +1,90 @@
+\documentclass[xcolor=dvipsnames]{beamer}
+
+\usepackage{xcolor}
+\usepackage[ngerman]{babel} % deutsche Silbentrennung
+\usepackage[utf8]{inputenc} % wegen deutschen Umlauten
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{pst-node}% http://ctan.org/pkg/pst-node
+\usepackage{eurosym}
+
+
+\usetheme{metropolis}           % Use metropolis theme
+\title{The smallest grammar problem}
+\date{05. Juli 2019}
+\author{Edgar Dorausch}
+%\institute{Centre for Modern Beamer Themes}
+\begin{document}
+\maketitle
+
+\newcommand{\Gap}{$ $ \linebreak}
+\newcommand{\FrameName}{
+	\ifthenelse{\equal{\subsecname}{}}{
+		\secname
+	}{
+		\secname \thinspace -\thinspace\subsecname
+	}
+}
+
+\newcommand{\Fresh}{\ddagger}
+\newcommand{\Hint}[1]{\textcolor{gray}{#1}}
+
+
+\section{Motivation und Anwendung}
+
+\begin{frame}{\FrameName}
+	\begin{itemize}[<+->]
+		\item Mustererkennung
+		\item Kompression
+	\end{itemize}
+\end{frame}
+
+\input{Sections/Definitions.tex}
+
+\input{Sections/Complexity.tex}
+
+\section{Algorithmen}
+
+\subsection{Vorüberlegungen}
+
+\newcommand{\LowerBound}{\textcolor{TealBlue}{f_l(n)}}
+\newcommand{\UpperBound}{\textcolor{Salmon}{f_u(n)}}
+
+\begin{frame}{\FrameName}
+\begin{block}{Lower bound bestimmen}
+	\begin{itemize}[<+->]
+		\item Definiere $\alpha$ \textcolor{gray}{(n = $|\alpha |$)}
+		\item Bestimme lower bound von $m$ \linebreak \textcolor{gray}{$m \in \Omega(\LowerBound)$}
+		\item Bestimme upper bound von $m^*$ \linebreak \textcolor{gray}{$m^* \in \mathcal{O}(\UpperBound)$}
+	\end{itemize}
+	\only<4>{
+		$\Rightarrow$
+		\fbox{
+		$a(n) \in \Omega(\frac{
+			\LowerBound
+		}{
+			\UpperBound
+		})$
+		}}
+\end{block}
+\end{frame}
+
+\input{Sections/LZ78.tex}
+
+\subsection{global algorithms}
+\begin{frame}{\FrameName}
+	\begin{block}{TODO}
+	\Gap
+	$a^2 + b^2 = c^2$
+\end{block}
+\end{frame}
+
+\subsection{LZ77 variant}
+\begin{frame}{\FrameName}
+	\begin{block}{TODO}
+	\Gap
+	Basiert anscheinend auf $BB[\alpha]-Trees$
+\end{block}
+\end{frame}
+
+\end{document}

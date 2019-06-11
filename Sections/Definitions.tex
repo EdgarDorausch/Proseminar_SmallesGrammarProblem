@@ -1,0 +1,104 @@
+\section{Definitionen und Wiederholung}
+\begin{frame}{\FrameName}
+	\begin{block}{Kontextfreie Grammatik}
+		\Gap
+		Eine KFG ist ein Quadrupel $(\Sigma,\Gamma,S,\Delta)$ mit
+		\begin{itemize}
+			%	\item \alert<4>{This is\only<4>{ really} important}
+			\item $\Sigma$ - Terminalalphabet
+			\item $\Gamma$ - Nichtterminalalphabet
+			\item $S$ - Startsymbol
+			\item $\Delta$ - Menge von Regeln der Form $T\rightarrow\alpha$\linebreak
+			$T \in \Gamma$;
+			$\alpha \in (\Sigma \cup \Gamma)^\ast$
+		\end{itemize}
+	\end{block}
+	
+\end{frame}
+
+\begin{frame}{\FrameName}
+\begin{alert}{Besonderheit!:}
+	\Gap
+	Die Grammatiken sollen nur ein Wort erzeugen. Deshalb:
+	\begin{itemize}
+		
+		\item Grammatik muss azyklisch sein
+		\item Für jedes $T \in \Gamma$ existiert nur eine Regel in $\Delta$
+	\end{itemize}
+\end{alert}
+\end{frame}
+
+\begin{frame}{\FrameName}
+\begin{block}{Expansion  eines Strings $\alpha$}
+	\Gap
+	Erhält man durch erschöpfendes Anwenden der Regeln in einer Grammatik bis nur noch Terminale enthalten sind. \linebreak
+	Notation: $\langle \alpha \rangle$
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+\begin{block}{Expansionslänge}
+	\Gap
+	Anzahl der Zeichen in der Expansion eines Strings $\alpha$ \linebreak
+	Notation: $[\alpha]  = \lvert \langle \alpha \rangle \lvert$
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+\begin{block}{Größe einer Grammatik G}
+	\Gap
+	Anzahl der Zeichen in den rechten Seiten der Grammatikregeln\linebreak
+	Notation: $m = \lvert G \lvert = \sum\limits_{(T \rightarrow \alpha) \in \Delta} \langle \alpha \rangle$ \linebreak $ $\linebreak
+	Größe der kleinsten Grammatik für einen String: $m^*$
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+\begin{block}{Beispiel}
+	$$
+	G \colon \begin{Bmatrix} 
+		S \rightarrow rhaTber \textvisiblespace TTa \\
+		T \rightarrow bar
+	\end{Bmatrix}
+	$$
+	
+	$\langle S \rangle = rhabarber \textvisiblespace barbara$ \linebreak
+	$[S] = 17$ \linebreak
+	$\lvert G \lvert = 11$
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+\begin{block}{Approximation Ratio}
+	\Gap
+	Sei $G_A$ die Grammatik, die von einem Algorithmus $A$ erzeugt wird.
+	$$
+	a(n) = \alert<2>{\max\limits_{\alpha \in \Sigma^n}}\frac{
+		\textrm{$\lvert G_A \lvert$ für $\alpha$}
+	}{
+		\textrm{$m^*$ für $\alpha$}
+	}
+	$$
+	\begin{center}\alert{
+			
+			\only<2>{Worstcase!}
+		}
+	\end{center}
+	
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+\begin{table}
+	\caption{Landau Notation}
+	\begin{tabular}{ r p{3.5cm} l}
+		
+		$f \in o(g)$ & "$f < g$" \\
+		%$\only<1>{f \in \mathcal{O}(g)}\only<2>{\alert{f \in \mathcal{O}(g)}}$ & "$f\leq g$" \\
+		\textcolor{gray}{(Upper bound)} $f \in \mathcal{O}(g)$ & "$f\leq g$" \\
+		$f \in \Theta(g)$ & "$f = g$"\\
+		\textcolor{gray}{(Lower bound)} $f \in \Omega(g)$ & "$f \geq g$"\\
+		$f \in \omega(g)$ & "$f > g$"\\
+	\end{tabular}
+\end{table}
+\end{frame}
