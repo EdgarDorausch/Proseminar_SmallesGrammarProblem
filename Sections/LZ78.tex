@@ -1,10 +1,20 @@
 \subsection{LZ78}
 
 \begin{frame}{\FrameName}
+	\begin{block}{LZ78}
+		\begin{itemize}[<+->]
+			\item Gänginger Kompressionsalgorithmus
+			\item Abraham Lempel und Jacob Ziv (1978)
+			\item Verwendung bei GIF und TIFF \PDFC{Erweiterung wird verwendet}
+		\end{itemize}
+	\end{block}
+	\end{frame}
+
+\begin{frame}{\FrameName}
 \begin{block}{LZ78 - Datenstrukturen}
 	\begin{itemize}[<+->]
-		\item Strings werden als Sequenzen von Paaren $(i,c)$ dargestellt \linebreak \Hint{$i$...Index eines Vorgänger-Paares oder $0$$; c \in \Sigma$}
-		\item Jedes Paar repräsentiert einen Substring
+		\item Strings als Sequenzen von Paaren $(i,c)$ dargestellt \linebreak \Hint{$i$...Index eines Vorgänger-Paares oder $0$$; c \in \Sigma$}
+		\item Jedes Paar repräsentiert Substring
 		\item Wenn $i$ gleich $0$ dann ist dieser Substring gleich $c$
 		\item Andernfalls ist der Substring des $i$-ten Parres gefolgt von $c$
 	\end{itemize}
@@ -15,14 +25,43 @@
 \begin{block}{Beispiel}
 	\Gap
 	\Gap
-	\only<1>{
-		\includegraphics[width=\textwidth]{Images/LZ78/blank}}
-	\only<2>{
-		\includegraphics[width=\textwidth]{Images/LZ78/withRef}}
-	\only<3>{
-		\includegraphics[width=\textwidth]{Images/LZ78/full}}
+	\begin{center}
+		\only<1>{
+			\includegraphics[width=0.8\textwidth]{Images/LZ78/blank}}
+		\only<2>{
+			\includegraphics[width=0.8\textwidth]{Images/LZ78/withRefs}}
+		\only<3>{
+			\includegraphics[width=0.8\textwidth]{Images/LZ78/full}}
+	\end{center}
 \end{block}
 \end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{LZ78 Grammatiken}
+		\begin{itemize}[<+->]
+			\item Paar $\hat{=}$ Nichterminal
+			\item $\begin{cases}
+				X_j \rightarrow c, & i = 0\\
+				X_j \rightarrow X_i c, & \text{sonst}
+			\end{cases}$
+			\item $S \rightarrow X_1 ... X_k$
+			
+		\end{itemize}
+		\visible<4>{
+			\begin{minipage}[t]{0.5\textwidth}
+				$S \rightarrow \foreach \n in {1,2,3,4,5,6}{X_{\n}}$ 
+				
+	
+				$X_1 \rightarrow a; X_2 \rightarrow X_1b;  X_3 \rightarrow b$
+				$X_4 \rightarrow X_2a; X_5 \rightarrow X_3a; X_4 \rightarrow X_6\text{\euro}$
+			\end{minipage}
+			\begin{minipage}[c]{0.48\textwidth}
+				\includegraphics[width=\textwidth]{Images/LZ78/full}
+			\end{minipage}
+		}
+	
+	\end{block}
+	\end{frame}
 
 \begin{frame}{\FrameName}
 \begin{block}{LZ78 - Algorithmus}
@@ -46,12 +85,12 @@
 \begin{block}{Beispiel}
 	\begin{description}[<+->]
 		\item \M{a}abbababaab\euro
-		\item (0,a) \M{ab}bababaab\euro
-		\item (0,a) (1,b) \M{b}ababaab\euro
-		\item (0,a) (1,b) (0,b) \M{aba}baab\euro
-		\item (0,a) (1,b) (0,b) (2,a) \M{ba}ab\euro
-		\item (0,a) (1,b) (0,b) (2,a) (3,a) \M{ab\euro}
-		\item (0,a) (1,b) (0,b) (2,a) (3,a) (2,\euro)
+		\item $\underbrace{(0,a)}_{a}$ \M{ab}bababaab\euro
+		\item $\underbrace{(0,a)}_{a}$ $\underbrace{(1,b)}_{ab}$ \M{b}ababaab\euro
+		\item $\underbrace{(0,a)}_{a}$ $\underbrace{(1,b)}_{ab}$ $\underbrace{(0,b)}_{b}$ \M{aba}baab\euro
+		\item $\underbrace{(0,a)}_{a}$ $\underbrace{(1,b)}_{ab}$ $\underbrace{(0,b)}_{b}$ $\underbrace{(2,a)}_{aba}$ \M{ba}ab\euro
+		\item $\underbrace{(0,a)}_{a}$ $\underbrace{(1,b)}_{ab}$ $\underbrace{(0,b)}_{b}$ $\underbrace{(2,a)}_{aba}$ $\underbrace{(3,a)}_{ba}$ \M{ab\euro}
+		\item $\underbrace{(0,a)}_{a}$ $\underbrace{(1,b)}_{ab}$ $\underbrace{(0,b)}_{b}$ $\underbrace{(2,a)}_{aba}$ $\underbrace{(3,a)}_{ba}$ $\underbrace{(2,\text{\euro})}_{ab\text{\euro}}$
 	\end{description}
 \end{block}
 \end{frame}

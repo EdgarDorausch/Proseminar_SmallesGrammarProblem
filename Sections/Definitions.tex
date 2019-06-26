@@ -19,7 +19,7 @@
 \begin{frame}{\FrameName}
 \begin{alert}{Besonderheit!:}
 	\Gap
-	Die Grammatiken sollen nur ein Wort erzeugen. Deshalb:
+	Grammatiken sollen nur ein Wort erzeugen. Deshalb:
 	\begin{itemize}
 		
 		\item Grammatik muss azyklisch sein
@@ -31,24 +31,24 @@
 \begin{frame}{\FrameName}
 \begin{block}{Expansion  eines Strings $\alpha$}
 	\Gap
-	Erhält man durch erschöpfendes Anwenden der Regeln in einer Grammatik bis nur noch Terminale enthalten sind. \linebreak
+	Erschöpfendes Anwenden der Regeln \linebreak
 	Notation: $\langle \alpha \rangle$
+
+	\visible<2>{
+		\Gap
+		\textbf{Expansionslänge}
+		\Gap
+		Anzahl Zeichen in Expansion eines Strings $\alpha$ \linebreak
+		Notation: $[\alpha]  = \lvert \langle \alpha \rangle \lvert$}
 \end{block}
 \end{frame}
 
-\begin{frame}{\FrameName}
-\begin{block}{Expansionslänge}
-	\Gap
-	Anzahl der Zeichen in der Expansion eines Strings $\alpha$ \linebreak
-	Notation: $[\alpha]  = \lvert \langle \alpha \rangle \lvert$
-\end{block}
-\end{frame}
 
 \begin{frame}{\FrameName}
 \begin{block}{Größe einer Grammatik G}
 	\Gap
 	Anzahl der Zeichen in den rechten Seiten der Grammatikregeln\linebreak
-	Notation: $m = \lvert G \lvert = \sum\limits_{(T \rightarrow \alpha) \in \Delta} \langle \alpha \rangle$ \linebreak $ $\linebreak
+	Notation: $m = \lvert G \lvert = \sum\limits_{(T \rightarrow \alpha) \in \Delta} | \alpha |$ \linebreak $ $\linebreak
 	Größe der kleinsten Grammatik für einen String: $m^*$
 \end{block}
 \end{frame}
@@ -81,7 +81,7 @@
 	$$
 	\begin{center}\alert{
 			
-			\only<2>{Worstcase!}
+			\visible<2>{Worstcase!}
 		}
 	\end{center}
 	

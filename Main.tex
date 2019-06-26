@@ -1,5 +1,6 @@
 \documentclass[xcolor=dvipsnames]{beamer}
 
+\usepackage{pdfcomment}
 \usepackage{xcolor}
 \usepackage[ngerman]{babel} % deutsche Silbentrennung
 \usepackage[utf8]{inputenc} % wegen deutschen Umlauten
@@ -17,6 +18,10 @@
 \begin{document}
 \maketitle
 
+
+\newcommand{\SubItem}[1]{
+  \setlength\itemindent{15pt} \item[-] #1
+}
 \newcommand{\Gap}{$ $ \linebreak}
 \newcommand{\FrameName}{
 	\ifthenelse{\equal{\subsecname}{}}{
@@ -29,12 +34,23 @@
 \newcommand{\Fresh}{\ddagger}
 \newcommand{\Hint}[1]{\textcolor{gray}{#1}}
 
+\newboolean{WithComments}
+\setboolean{WithComments}{true}
+\newcommand{\PDFC}[1]{
+	\ifthenelse{\boolean{WithComments}}{
+		\pdfcomment[color=red,icon=Note]{#1}
+	}{
+		% Empty
+	}
+}
+% \newcommand{\PDFC}[1]{}
 
 \section{Motivation und Anwendung}
 
 \begin{frame}{\FrameName}
 	\begin{itemize}[<+->]
-		\item Mustererkennung
+		\item Mustererkennung \linebreak
+		\Hint{z.B. DNA-Analyse, NLP}
 		\item Kompression
 	\end{itemize}
 \end{frame}
@@ -45,6 +61,18 @@
 
 \section{Algorithmen}
 
+\begin{frame}{\FrameName}
+	\begin{itemize}[<+->]
+		\item LZ78
+		\item Bisection 
+		\item Sequential
+		\item Global algorithms
+		\SubItem{Longest Match}
+		\SubItem{Greedy}
+		\SubItem{Re-Pair}
+	\end{itemize}
+\end{frame}
+
 \subsection{Vorüberlegungen}
 
 \newcommand{\LowerBound}{\textcolor{TealBlue}{f_l(n)}}
@@ -53,7 +81,7 @@
 \begin{frame}{\FrameName}
 \begin{block}{Lower bound bestimmen}
 	\begin{itemize}[<+->]
-		\item Definiere $\alpha$ \textcolor{gray}{(n = $|\alpha |$)}
+		\item Definiere $\alpha_k$ \textcolor{gray}{(n = $|\alpha_k |$)} \PDFC{alpha wächst dynamisch}
 		\item Bestimme lower bound von $m$ \linebreak \textcolor{gray}{$m \in \Omega(\LowerBound)$}
 		\item Bestimme upper bound von $m^*$ \linebreak \textcolor{gray}{$m^* \in \mathcal{O}(\UpperBound)$}
 	\end{itemize}
@@ -86,5 +114,7 @@
 	Basiert anscheinend auf $BB[\alpha]-Trees$
 \end{block}
 \end{frame}
+
+\input{Sections/Conclusion.tex}
 
 \end{document}
