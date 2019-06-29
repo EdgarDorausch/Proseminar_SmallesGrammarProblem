@@ -17,9 +17,9 @@
 \end{frame}
 
 \begin{frame}{\FrameName}
-\begin{alert}{Besonderheit!:}
+\begin{alert}{Besonderheit:}
 	\Gap
-	Grammatiken sollen nur ein Wort erzeugen. Deshalb:
+	Grammatiken sollen nur ein Wort erzeugen (straight-line grammar):
 	\begin{itemize}
 		
 		\item Grammatik muss azyklisch sein
@@ -36,20 +36,11 @@
 
 	\visible<2>{
 		\Gap
-		\textbf{Expansionslänge}
+		\textbf{Größe einer Grammatik G}
 		\Gap
-		Anzahl Zeichen in Expansion eines Strings $\alpha$ \linebreak
-		Notation: $[\alpha]  = \lvert \langle \alpha \rangle \lvert$}
-\end{block}
-\end{frame}
-
-
-\begin{frame}{\FrameName}
-\begin{block}{Größe einer Grammatik G}
-	\Gap
-	Anzahl der Zeichen in den rechten Seiten der Grammatikregeln\linebreak
-	Notation: $m = \lvert G \lvert = \sum\limits_{(T \rightarrow \alpha) \in \Delta} | \alpha |$ \linebreak $ $\linebreak
-	Größe der kleinsten Grammatik für einen String: $m^*$
+		Anzahl der Zeichen in den rechten Seiten der Grammatikregeln\linebreak
+		Notation: $m = \lvert G \lvert = \sum\limits_{(T \rightarrow \alpha) \in \Delta} | \alpha |$ \linebreak $ $\linebreak
+		Größe der kleinsten Grammatik für einen String: $m^*$}
 \end{block}
 \end{frame}
 
@@ -63,7 +54,7 @@
 	$$
 	
 	$\langle S \rangle = rhabarber \textvisiblespace barbara$ \linebreak
-	$[S] = 17$ \linebreak
+	$| \langle S \rangle| = 17$ \linebreak
 	$\lvert G \lvert = 11$
 \end{block}
 \end{frame}

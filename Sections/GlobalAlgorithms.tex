@@ -1,0 +1,98 @@
+
+\subsection{Global Algorithms}
+\begin{frame}{\FrameName}
+	\begin{block}{Global Algorithms}
+    \begin{itemize}[<+->]
+      \item Klasse von Algorithmen
+      \item Haben alle ein upper bound von $\mathcal{O}((\frac{n}{log(n)})^{\frac{2}{3}})$
+      \item Lower bounds sind sehr schlecht
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Global Algorithms - Verfahren}
+    \begin{itemize}[<+->]
+      \item Grammatik schrittweise verbessert
+      \item Initialisiere Grammatik mit $S \rightarrow \alpha$
+      \item Wähle einen String $\gamma$
+      \item Füge $T \rightarrow \gamma$ \Hint{(T... neues Nichtterminal)}
+      \item Traversiere alle anderen Regeln von links nach rechts und ersetze vorkommen von $\gamma$ durch $T$
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Auswahl von $\gamma$}
+    \begin{itemize}[<+->]
+      \item $|\gamma| \ge 2$
+      \item $\gamma$ kommst mind. zwei mal in Grammatik vor \linebreak \Hint{(ohne Überschneidung)}
+      \item Alle Strings länger als $\gamma$ kommen seltener vor
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Upper bound}
+    \begin{itemize}[<+->]
+      \item Ähnlich upper bound von LZ78
+      \item Auflistung von Substrings der Länge 2
+      \item Einordnung in Gruppen
+      \item Abschätzen der Gesamt-Expansionslänge der Gruppen
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Upper bound (1/4)}
+    \begin{itemize}[<+->]
+      \item Wähle $\frac{2}{9}m$ Substrings der Länge 2 \linebreak \Hint{(ohne Überschneidung)}
+      \item ist immer möglich
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Upper bound (2/4)}
+    \begin{itemize}[<+->]
+      \item Sortiere Substrings aufsteigend nach deren Expansionslänge
+      \item Füge die ersten $2m^*$ Substrings der ersten Gruppe hinzu
+      \item Füge die nächsten $3m^*$ Substrings der zweiten Gruppe hinzu
+      \item usw. ...(bis zur Gruppe mit $gm^*$ Elementen)
+      \item $2m^* + 3m^* + ... + gm^* (g+1)m^* > \frac{2}{9}m$
+      \item $m^*\sum_{k=2}^{g+1}k = m^* (\frac{g^2}{2} + \frac{3g}{2}) > \frac{2}{9}m$
+      \item $m\in \mathcal{O}(g^2 m^*)$
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Upper bound (3/4)}
+    \begin{itemize}[<+->]
+      \item Sei $\sigma = $ "Gesamt-Expansionslänge"
+      \item Für jedes $\alpha$ in i-ten Gruppen gilt: $|\langle \alpha \rangle | \ge i+1$ \Hint{(mk-Lemma)}
+      \item $2^2m^* + 3^2m^* + ... + g^2m^* \le \sigma$
+      \item $\sigma \le 2n$
+      \item $2^2m^* + 3^2m^* + ... + g^2m^* \le 2n$
+      \item $m^* \sum_{k=2}^{g}k^2 = m^* (\frac{g^3}{3} + \frac{g^2}{2} + \frac{g}{6} - 1) \le 2n$
+      \item $g^3 \in \mathcal{O}(\frac{n}{m^*}) \Rightarrow g \in \mathcal{O}((\frac{n}{m^*})^{\frac{1}{3}})$
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Upper bound (4/4)}
+    \begin{itemize}[<+->]
+      \item $m\in \mathcal{O}(g^2 m^*)$ und $g \in \mathcal{O}((\frac{n}{m^*})^{\frac{1}{3}})$
+      \item $m \in \mathcal{O}((\frac{n}{m^*})^{\frac{2}{3}} m^*) = \mathcal{O}((\frac{n}{log (n)})^{\frac{2}{3}} m^*)$
+      \item $a(n) = \max\limits_{\alpha \in \Sigma^n} \frac{m}{m^*} \in \mathcal{O}((\frac{n}{log(n)})^{\frac{2}{3}}) \qed$
+    \end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}{\FrameName}
+	\begin{block}{Greedy}
+    \Gap
+    In jeder Iteration wird das $\gamma $ gewählt welches die Größe der Grammatik am meisten senkt.
+\end{block}
+\end{frame}
