@@ -4,8 +4,8 @@
 	\begin{block}{LZ78}
 		\begin{itemize}[<+->]
 			\item Gänginger Kompressionsalgorithmus
-			\item Abraham Lempel und Jacob Ziv (1978)
-			\item Verwendung bei GIF und TIFF \PDFC{Erweiterung wird verwendet}
+			\item Abraham Lempel \& Jacob Ziv (1978)
+			\item Verwendung GIF \& TIFF \PDFC{Erweiterung wird verwendet}
 		\end{itemize}
 	\end{block}
 	\end{frame}
@@ -13,31 +13,24 @@
 \begin{frame}{\FrameName}
 \begin{block}{LZ78 - Datenstrukturen}
 	\begin{itemize}[<+->]
-		\item Strings als Sequenzen von Paaren $(i,c)$ dargestellt \linebreak \Hint{$i$...Index eines Vorgänger-Paares oder $0$$; c \in \Sigma$}
-		\item Jedes Paar repräsentiert Substring
-		\item Wenn $i$ gleich $0$ dann ist dieser Substring gleich $c$
-		\item Andernfalls ist der Substring des $i$-ten Paares gefolgt von $c$
+		\item Strings $\rightarrow$ Sequenzen von Paaren $(i,c)$ \linebreak \Hint{$i$...Index eines Vorgänger-Paares oder $0$$; c \in \Sigma$}
+		\item<3-> Paar $\hat{=}$ Substring
+		\item<4-> Wenn $i$ gleich $0$ dann ist dieser Substring gleich $c$
+		\item<4-> Andernfalls ist der Substring des $i$-ten Paares gefolgt von $c$
+		\item<1->[] \Gap \begin{center}
+			\only<1>{
+				\includegraphics[width=0.6\textwidth]{Images/LZ78/blank}}
+			\only<2-4>{
+				\includegraphics[width=0.6\textwidth]{Images/LZ78/withRefs}}
+			\only<5>{
+				\includegraphics[width=0.6\textwidth]{Images/LZ78/full}}
+		\end{center}
 	\end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}{\FrameName}
-\begin{block}{Beispiel}
-	\Gap
-	\Gap
-	\begin{center}
-		\only<1>{
-			\includegraphics[width=0.8\textwidth]{Images/LZ78/blank}}
-		\only<2>{
-			\includegraphics[width=0.8\textwidth]{Images/LZ78/withRefs}}
-		\only<3>{
-			\includegraphics[width=0.8\textwidth]{Images/LZ78/full}}
-	\end{center}
-\end{block}
-\end{frame}
-
-\begin{frame}{\FrameName}
-	\begin{block}{LZ78 Grammatiken}
+	\begin{block}{LZ78 - Grammatiken}
 		\begin{itemize}[<+->]
 			\item Paar $\hat{=}$ Nichterminal
 			\item $\begin{cases}
@@ -66,12 +59,12 @@
 \begin{frame}{\FrameName}
 \begin{block}{LZ78 - Algorithmus}
 	\begin{itemize}[<+->]
-		\item String wird Schrittweise in einem Durchlauf von links nach rechts in eine Sequenz von Paaren übersetzt
-		\item Finde in jedem Schritt das kürzeste Präfix $\gamma$ des verbleibenden Strings das nicht Expansion eines bereits erzeugten Paars ist
-		\item Am Ende des Strings muss eventuell ein weiteres Zeichen hinzugefügt werden
-		\item Ein neues Paar wird an die Liste angehangen:
+		\item String sequenziell (von links nach rechts) übersetzt
+		\item Iteration: finde kürzestes Präfix $\gamma$ des in Strings das nicht Expansion eines bereits erzeugten Paars ist
+		% \item Am Ende des Strings muss eventuell ein weiteres Zeichen hinzugefügt werden
+		\item Übersetzungsvorschrift:
 		\begin{enumerate}
-			\item<4-> Wenn da $\gamma = 1$ ist füge $(0,\gamma)$ hinzu
+			\item<4-> Wenn $|\gamma| = 1$ $\Rightarrow$ $(0,\gamma)$
 			\item<5-> Andernfalls ist $\gamma = \alpha c$. \linebreak $\alpha$ ... Expansion eines Paars mit dem Index $i_\alpha$ \linebreak $\Rightarrow$ Paar: $(i,c)$
 		\end{enumerate}
 	\end{itemize}
@@ -96,36 +89,54 @@
 \end{frame}
 
 \begin{frame}{\FrameName}
-\begin{block}{LowerBound}
-	\begin{center}
-		\fbox{$ \alpha_k = a^{k(k+1)/2}(ba^k)^{(k+1)^2} $}
-	\end{center}
+	\begin{block}{Lower Bound}
+		\begin{itemize}[<+->]
+			\item Definiere $\alpha_k$ \textcolor{gray}{(n = $|\alpha_k |$)} \PDFC{alpha wächst dynamisch}
+			\item Bestimme upper bound von $m^*$ \linebreak \textcolor{gray}{$m^* \in \mathcal{O}(\UpperBound)$}
+			\item Bestimme lower bound von $m$ \linebreak \textcolor{gray}{$m \in \Omega(\LowerBound)$}
+			\item[$\Rightarrow$] \fbox{
+			$a(n) \in \Omega(\frac{
+				\LowerBound
+			}{
+				\UpperBound
+			})$
+			}
+		\end{itemize}
+	\end{block}
+	\end{frame}
+
+\newcommand{\StringDefinition}{$$ \alpha_k = a^1 a^2 ... a^k \underbrace{ba^k...ba^k}_{(k+1)^2}$$ $$ \alpha_k = a^{k(k+1)/2}(ba^k)^{(k+1)^2} $$}
+
+\begin{frame}{\FrameName}
+\begin{block}{Lower Bound (1/4)}
+	$$ \alpha_k = a^1 a^2 ... a^k \underbrace{ba^k...ba^k}_{(k+1)^2}$$
+	\visible<2->{$$ \alpha_k = a^{k(k+1)/2}(ba^k)^{(k+1)^2} $$}
 	\begin{itemize}[<+->]
-		\item $|\alpha_k | = k \frac{k+1}{2} + (1+k)(k+1)^2$ \linebreak
-			$\phantom{|\alpha_k |} = k^3 + \frac{7}{2}k^2 + \frac{7}{2}k + 1$
-		\item $ n = |\alpha_k | \in \Theta(k^3)$
+		\item<3-> \only<3>{$|\alpha_k | = k \frac{k+1}{2} + (1+k)(k+1)^2$} \only<4->{$|\alpha_k | = \alert<5>{k^3} + \frac{7}{2}k^2 + \frac{7}{2}k + 1$}
+		\item<5-> $ n = |\alpha_k | \in \Theta(\alert{k^3})$
 	\end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}{\FrameName}
-\begin{block}{UpperBound $m^*$}
-	\begin{center}
-		\fbox{$ \alpha_k = a^{k(k+1)/2}(ba^k)^{(k+1)^2} $}
-	\end{center}
+\begin{block}{Lower Bound (2/4)}
+	\StringDefinition
 	\begin{itemize}[<+->]
-		\item $m^* \in \mathcal{O}(1+ log(\frac{k^2+k}{2}) + log(k+1)^2 + 1+ log(k))$
-		\item $m^* \in \mathcal{O}(log \thinspace k)$
-		\item $m^* \in \mathcal{O}(log \thinspace n^\frac{1}{3}) = \mathcal{O}(log \thinspace n)$
+		\item Es existiert Grammatik mit Größe: \Hint{(Lemmma 1...3)} $\mathcal{O}(\underbrace{1+ log(\frac{k^2+k}{2})}_{a^{k(k+1)/2}} + \underbrace{log((k+1)^2) + 1+ 1+ log(k)}_{(ba^k)^{(k+1)^2}})$
+		\item \only<2>{$m^* \in \mathcal{O}(1+ log(\frac{k^2+k}{2}) + log((k+1)^2) + 1+ 1+  log(k))$} 
+			\only<3>{$m^* \in \mathcal{O}(log(\frac{k^2+k}{2}) + log((k+1)^2) + log(k))$}
+			\only<4>{$m^* \in \mathcal{O}(2log(k) + 2log(k) + log(k))$}
+			\only<5->{$m^* \in \mathcal{O}(log(k))$}
+
+		\item<6-> $m^* \in \mathcal{O}(log(n^\frac{1}{3}))$ \Hint{$ n \in \Theta(k^3)$}
+		\item<7-> $m^* \in \mathcal{O}(log(n))$
 	\end{itemize}
 \end{block}
 \end{frame}
 
 \begin{frame}{\FrameName}
-\begin{block}{LowerBound m}
-	\begin{center}
-		\fbox{$ \alpha_k = a^{k(k+1)/2}(ba^k)^{(k+1)^2} $}
-	\end{center}
+\begin{block}{Lower Bound (3/4)}
+	\StringDefinition
 	\begin{itemize}[<+->]
 		\item String wird in zwei Phasen in eine Paar-Sequenz übersetzt
 		\item Erste Phase: alle Strings $a...a^k$ zu Paaren übersetzt
@@ -137,40 +148,39 @@
 \end{frame}
 
 \begin{frame}{\FrameName}
-\begin{block}{LowerBound}
-	\begin{center}
-		\fbox{$ \alpha_k = a^{k(k+1)/2}(ba^k)^{(k+1)^2} $}
-	\end{center}
-	\begin{itemize}[<+->]
-		\item $m^* \in \mathcal{O}(log \thinspace n)$
-		\item $m \in \Omega(n^{2/3})$
-		\item $a(n) \in \Omega(\frac{n^{2/3}}{log \thinspace n})$
-	\end{itemize}
+\begin{block}{Lower Bound (4/4)}
+	\StringDefinition	
+		$m^* \in \mathcal{O}(log \thinspace n)$ \hfill $m \in \Omega(n^{2/3})$ \linebreak 
+		\begin{center}
+			\visible<2>{$a(n) \in \Omega(\frac{n^{2/3}}{log \thinspace n})$}
+		\end{center}
 \end{block}
 \end{frame}
 
 \begin{frame}{\FrameName}
 	\begin{block}{Upper bound}
-		\visible<1->{
-			\includegraphics[width=0.98\textwidth]{Images/LZ78/ub_blank}}
-			\Gap
-		\visible<2->{
-			\includegraphics[width=0.98\textwidth]{Images/LZ78/ub_sort}}
-			\Gap
-		\visible<3->{
-			\includegraphics[width=0.98\textwidth]{Images/LZ78/ub_underestimate}}
+		\begin{itemize}[<+->]
+			\item $m$ proportional zu zu Anzahl der Nichterminale
+			\item Nichterminale in Gruppen zerlegt
+			\item Abhängigkeit Anzahl Nichterminal und Anzahl Gruppen
+			\item Abschätzung der Gruppenanzahl
+			\item $m$ bestimmen
+		\end{itemize}
 	\end{block}
 	\end{frame}
 
-	\begin{frame}{\FrameName}
-		\begin{block}{Upper bound}
-			\visible<1->{
-				\includegraphics[width=0.98\textwidth]{Images/LZ78/ub_blank}}
-				\Gap
-			\visible<2->{
-				\includegraphics[width=0.98\textwidth]{Images/LZ78/ub_sort}}
-				\Gap
-			\visible<3->{
-				\includegraphics[width=0.98\textwidth]{Images/LZ78/ub_underestimate}}
-		\end{block}
-		\end{frame}
+
+
+\begin{frame}{\FrameName}
+	\begin{block}{Upper bound (1/4)}
+		\visible<1->{
+			\includegraphics[width=0.98\textwidth]{Images/LZ78/UB_unsort}}
+			\Gap
+		\visible<2->{
+			\includegraphics[width=0.98\textwidth]{Images/LZ78/UB_sort}}
+			\Gap
+		\visible<3->{
+			\includegraphics[width=0.98\textwidth]{Images/LZ78/UB_grouped}}
+	\end{block}
+	\end{frame}
+

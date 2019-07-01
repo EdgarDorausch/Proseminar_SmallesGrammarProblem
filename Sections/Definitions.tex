@@ -2,7 +2,7 @@
 \begin{frame}{\FrameName}
 	\begin{block}{Kontextfreie Grammatik}
 		\Gap
-		Eine KFG ist ein Quadrupel $(\Sigma,\Gamma,S,\Delta)$ mit
+		Quadrupel $(\Sigma,\Gamma,S,\Delta)$ mit
 		\begin{itemize}
 			%	\item \alert<4>{This is\only<4>{ really} important}
 			\item $\Sigma$ - Terminalalphabet
@@ -19,11 +19,11 @@
 \begin{frame}{\FrameName}
 \begin{alert}{Besonderheit:}
 	\Gap
-	Grammatiken sollen nur ein Wort erzeugen (straight-line grammar):
+	Grammatiken sollen nur ein Wort erzeugen \Hint{(straight-line grammar)}
 	\begin{itemize}
 		
-		\item Grammatik muss azyklisch sein
-		\item Für jedes $T \in \Gamma$ existiert nur eine Regel in $\Delta$
+		\item Grammatik azyklisch
+		\item Für jedes $T \in \Gamma$ existiert nur eine Regel
 	\end{itemize}
 \end{alert}
 \end{frame}
@@ -32,15 +32,20 @@
 \begin{block}{Expansion  eines Strings $\alpha$}
 	\Gap
 	Erschöpfendes Anwenden der Regeln \linebreak
-	Notation: $\langle \alpha \rangle$
+	Notation: \alert{$\langle \alpha \rangle$}
 
-	\visible<2>{
+	\visible<2->{
 		\Gap
 		\textbf{Größe einer Grammatik G}
 		\Gap
 		Anzahl der Zeichen in den rechten Seiten der Grammatikregeln\linebreak
-		Notation: $m = \lvert G \lvert = \sum\limits_{(T \rightarrow \alpha) \in \Delta} | \alpha |$ \linebreak $ $\linebreak
-		Größe der kleinsten Grammatik für einen String: $m^*$}
+		Notation: $\alert{m} = \lvert G \lvert = \sum\limits_{(T \rightarrow \alpha) \in \Delta} | \alpha |$}
+		\visible<3>{
+		\linebreak
+		\Gap
+		\textbf{Größe der kleinsten Grammatik G}
+		\Gap
+		Notation: \alert{$m^*$}}
 \end{block}
 \end{frame}
 
@@ -53,19 +58,18 @@
 	\end{Bmatrix}
 	$$
 	
-	$\langle S \rangle = rhabarber \textvisiblespace barbara$ \linebreak
-	$| \langle S \rangle| = 17$ \linebreak
-	$\lvert G \lvert = 11$
+	$\langle S \rangle = rhabarber \textvisiblespace barbara$ 
+	\visible<2->{ \linebreak $| \langle S \rangle| = 17$}
+	\visible<3->{ \linebreak $\lvert G \lvert = 11$}
 \end{block}
 \end{frame}
 
 \begin{frame}{\FrameName}
 \begin{block}{Approximation Ratio}
 	\Gap
-	Sei $G_A$ die Grammatik, die von einem Algorithmus $A$ erzeugt wird.
 	$$
 	a(n) = \alert<2>{\max\limits_{\alpha \in \Sigma^n}}\frac{
-		\textrm{$\lvert G_A \lvert$ für $\alpha$}
+		\textrm{m für $\alpha$}
 	}{
 		\textrm{$m^*$ für $\alpha$}
 	}

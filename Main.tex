@@ -49,9 +49,9 @@
 
 \begin{frame}{\FrameName}
 	\begin{itemize}[<+->]
+		\item Kompression
 		\item Mustererkennung \linebreak
 		\Hint{z.B. DNA-Analyse, NLP}
-		\item Kompression
 	\end{itemize}
 \end{frame}
 
@@ -67,9 +67,12 @@
 		\item Bisection 
 		\item Sequential
 		\item Global algorithms
-		\SubItem{Longest Match}
-		\SubItem{Greedy}
-		\SubItem{Re-Pair}
+		% \setlength{\itemindent}{1cm}
+		\begin{itemize}
+			\item[-] Longest Match
+			\item[-] Greedy
+			\item[-] Re-Pair
+		\end{itemize}
 	\end{itemize}
 \end{frame}
 
@@ -78,24 +81,7 @@
 \newcommand{\LowerBound}{\textcolor{TealBlue}{f_l(n)}}
 \newcommand{\UpperBound}{\textcolor{Salmon}{f_u(n)}}
 
-\begin{frame}{\FrameName}
-\begin{block}{Lower bound bestimmen}
-	\begin{itemize}[<+->]
-		\item Definiere $\alpha_k$ \textcolor{gray}{(n = $|\alpha_k |$)} \PDFC{alpha wächst dynamisch}
-		\item Bestimme lower bound von $m$ \linebreak \textcolor{gray}{$m \in \Omega(\LowerBound)$}
-		\item Bestimme upper bound von $m^*$ \linebreak \textcolor{gray}{$m^* \in \mathcal{O}(\UpperBound)$}
-	\end{itemize}
-	\only<4>{
-		$\Rightarrow$
-		\fbox{
-		$a(n) \in \Omega(\frac{
-			\LowerBound
-		}{
-			\UpperBound
-		})$
-		}}
-\end{block}
-\end{frame}
+
 
 \input{Sections/LZ78.tex}
 

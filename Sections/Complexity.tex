@@ -2,7 +2,8 @@
 	
 \begin{frame}{\FrameName}
 \begin{itemize}[<+->]
-	\item Vertex Cover lässt sich auf SGP reduzieren
+	\item Vertex Cover auf SGP reduzieren
+	\item Approximationsschranke für polynomielle Algorithmen
 	\item Zusammenhang mit Addition Chains \textcolor{gray}{(nicht im Vortrag)}
 \end{itemize}
 \end{frame}
@@ -10,7 +11,7 @@
 \begin{frame}{\FrameName}
 \begin{block}{Vertex Cover}
 	\Gap
-	Suche (minimale) Menge von Knoten, sodass jede Kante mindestens einen dieser Knoten enthält.\linebreak
+	(Minimale) Menge von Knoten, sodass jede Kante mindestens einen dieser Knoten enthält.\linebreak
 	$ $\linebreak
 	
 	\only<1>{\includegraphics[width=0.25\textwidth]{Images/VertexCover/blank}}
@@ -34,10 +35,10 @@
 \begin{frame}{\FrameName}
 \begin{block}{NP-härte}
 	\begin{itemize}[<+->]
-			\item Betrachte nur Graphen mit maximalen Knoten-Grad 3
-			\item Überführung von Graphen zu Wörtern
-			\item Zeige, dass man über die kleinsete Grammatik einen Vertex Cover bestimmen kann
-			\item Berechne Upper Bound für effiziente Approximation \linebreak (außer $P=NP$)
+			\item Graphen mit maximalen Knoten-Grad 3
+			\item Graph als Wort \Hint{(Unbeschränktes Alphabet)}
+			\item Kleinsete Grammatik $\rightarrow$ Vertex Cover
+			\item Upper bound für effiziente Approximation \linebreak \Hint{(außer $P=NP$)}
 		\end{itemize}
 \end{block}
 \end{frame}
@@ -79,6 +80,7 @@
 
 \begin{frame}{\FrameName}
 \begin{block}{Graphen zu String überführen}
+	\PDFC{Double-Dagger = fresh symbol}
 	\Gap
 	$
 	\alpha =
@@ -106,7 +108,8 @@
 	\begin{itemize}[<+->]
 		\item Jedes Nichtterminal expandiert zu $\#v_i$, $v_i\#$ oder $\#v_i\#$
 		\item Enthält Regeln der Form $T_j \rightarrow \#v_i$ und $T_j \rightarrow v_i\#$
-		\item $C = \{v_i \in V | \exists T_j \rightarrow \#v_i\#\}$ ist (minimale) Vertex Cover
+		\item \alert<4>{$C = \{v_i \in V | \exists T_j \rightarrow \#v_i\#\}$ ist (minimale) Vertex Cover}
+		\item[] \hfill $\qed$
 	\end{itemize}
 \end{block}
 \end{frame}
@@ -114,10 +117,33 @@
 \begin{frame}{\FrameName}
 \begin{block}{Approximation Ratio}
 	\begin{itemize}[<+->]
-		\item $m^* = 15|V| + 3|E| + |C|$
-		\item Es ist ($NP$) hart Vertex Cover kleiner als $\frac{145}{144} \cdot |C|$ zu finden ($\frac{145}{144}\approx 1,006944...$)
-		\item $\rho = \frac{15|V| + 3|E| + \frac{145}{144}|C|}{15|V| + 3|E| + |C|}$
-		\item $\rho \geq \frac{15|V| + 3 \cdot \frac{3}{2}|V| + \frac{145}{144}(\frac{1}{3}|V|)}{15|V| + 3 \cdot \frac{3}{2}|V| + \frac{1}{3}|V|} = \frac{8569}{8568} \approx 1,0001167...$
+		\item \alert<5>{$m^* = 15|V| + 3|E| + |C|$}
+		\item \alert<6>{Vertex Cover kleiner als $\frac{145}{144} \cdot |C|$ finden ist ($NP$) hart} \Hint{($\frac{145}{144}\approx 1,006944...$)}
+		\item \alert<7>{$\frac{3}{2}|V| \ge |E|$ \& $\frac{1}{3}|V| \le |C|$}
+		% \item $\rho = \frac{15|V| + 3|E| + \frac{145}{144}|C|}{15|V| + 3|E| + |C|}$
+		% \item $\rho \geq \frac{15|V| + 3 \cdot \frac{3}{2}|V| + \frac{145}{144}(\frac{1}{3}|V|)}{15|V| + 3 \cdot \frac{3}{2}|V| + \frac{1}{3}|V|} = \frac{8569}{8568} \approx 1,0001167...$
+		\item[] \only<-4>{$$
+			a(n) = \max\limits_{\alpha \in \Sigma^n} \frac{m}{m^*}
+		$$}
+		\only<5>{$$
+			a(n) = \max\limits_{\alpha \in \Sigma^n} \frac{m}{\alert{15|V| + 3|E| + |C|}}
+		$$}
+		\only<6>{$$
+			a(n) \alert{\ge} \max\limits_{\alpha \in \Sigma^n} \frac{\alert{15|V| + 3|E| + \frac{145}{144}|C|}}{15|V| + 3|E| + |C|}
+		$$}
+		\only<7>{$$
+			a(n) \ge \max\limits_{\alpha \in \Sigma^n} \frac{15|V| + 3 \alert{\cdot \frac{3}{2}|V|} + \frac{145}{144}(\alert{\frac{1}{3}|V|})}{15|V| + 3 \alert{\cdot \frac{3}{2}|V|} + \alert{\frac{1}{3}|V|}}
+		$$}
+		\only<8>{$$
+			a(n) \ge \max\limits_{\alpha \in \Sigma^n} \alert{\frac{8569}{8568}}
+		$$}
+		\only<9>{$$
+			a(n) \ge \frac{8569}{8568} \approx 1,0001167...
+		$$}
+
+		\PDFC{warum dritte regel anwendbar? => ausdruk minimal wen...; erklären dass polynom. algorithmus betrachtet wird}
+
+		
 	\end{itemize}
 \end{block}
 \end{frame}
