@@ -169,10 +169,26 @@
 	\end{block}
 	\end{frame}
 
-
+	\begin{frame}{\FrameName}
+		\begin{block}{Upper bound (1/4)}
+			\begin{center}
+				$S \rightarrow \foreach \n in {1,2,3,4,5,6}{X_{\n}}$ 
+				
+	
+				$X_1 \rightarrow a; X_2 \rightarrow X_1b;  X_3 \rightarrow b$
+				$X_4 \rightarrow X_2a; X_5 \rightarrow X_3a; X_4 \rightarrow X_6\text{\euro}$
+			\end{center}
+			\begin{itemize}[<+->]
+				\item Jede Nicht-Start-Regel enthält max. zwei Symbole
+				\item $p$...Anzahl der Nicht-Start-regeln
+				\item $m \le 3p$
+				\item[$\Rightarrow$] $m \in \mathcal{O}(p)$
+			\end{itemize}
+		\end{block}
+		\end{frame}
 
 \begin{frame}{\FrameName}
-	\begin{block}{Upper bound (1/4)}
+	\begin{block}{Upper bound (2/4)}
 		\visible<1->{
 			\includegraphics[width=0.98\textwidth]{Images/LZ78/UB_unsort}}
 			\Gap
@@ -181,6 +197,37 @@
 			\Gap
 		\visible<3->{
 			\includegraphics[width=0.98\textwidth]{Images/LZ78/UB_grouped}}
+		\only<4>{$1m^* + 2m^* + ... + gm^* + (g+1)m^* > p$}
+		\only<5>{$m^* \sum^{g+1}_{k=1} k > p$}
+		\only<6->{$\alert<7->{m^*} (\frac{\alert<7->{g^2}}{2} + \frac{3g}{2} + 1) > p$}
+		\visible<7->{\linebreak $\Rightarrow p \in \mathcal{O}(\alert{m^*g^2})$}
 	\end{block}
 	\end{frame}
 
+\begin{frame}{\FrameName}
+	\begin{block}{Upper bound (3/4)}
+		\visible<1->{
+			\includegraphics[width=0.98\textwidth]{Images/LZ78/UB_grouped}}
+		\visible<2->{
+			\includegraphics[width=0.98\textwidth]{Images/LZ78/UB_underestimate}}
+		\only<3>{$1^2m^* + 2^2m^* + ... + g^2m^* \le n$}
+		\only<4>{$m^* \sum^{g}_{k=1} k^2 \le n$}
+		\only<5->{$\alert<6>{m^*} (\frac{\alert<6>{g^3}}{3} + \frac{g^2}{2} + \frac{g}{6}) \le \alert<6>{n}$}
+		\visible<6->{\linebreak $\Rightarrow \alert<6>{g^3} \in \mathcal{O}(\alert<6>{\frac{n}{m^*}})$}
+		\visible<7->{\linebreak $\Rightarrow g \in \mathcal{O}((\frac{n}{m^*})^{\frac{1}{3}})$}
+	\end{block}
+	\end{frame}
+	
+\begin{frame}{\FrameName}
+	\begin{block}{Upper bound (4/4)}
+		\alert<4>{$m \in \mathcal{O}(p)$} \hfill  \alert<2>{$g \in \mathcal{O}((\frac{n}{m^*})^{\frac{1}{3}})$} \hfill \alert<2>{$p \in \mathcal{O}(m^*g^2)$} \linebreak
+		\Gap
+		\visible<2->{\linebreak $\Rightarrow p \in \mathcal{O}(m^*(\frac{n}{m^*})^{\frac{2}{3}})$}
+		\visible<3->{\linebreak $\Rightarrow p \in \mathcal{O}(m^*(\frac{n}{\alert<3>{log(n)}})^{\frac{2}{3}})$ \Hint{(mk-Lemma)}}
+		\visible<4->{\linebreak $\Rightarrow \alert<4>{m} \in \mathcal{O}(m^*(\frac{n}{log(n)})^{\frac{2}{3}})$}
+		\visible<5->{\linebreak $\Rightarrow a(n) = \max\limits_{\alpha \in \Sigma^n} \frac{m}{m^*} \in \mathcal{O}((\frac{n}{log(n)})^{\frac{2}{3}})$ $\qed$}
+		
+	\end{block}
+	\end{frame}
+
+	
