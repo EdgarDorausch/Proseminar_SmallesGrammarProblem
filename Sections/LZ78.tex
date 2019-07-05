@@ -139,10 +139,10 @@
 	\StringDefinition
 	\begin{itemize}[<+->]
 		\item String wird in zwei Phasen in eine Paar-Sequenz übersetzt
-		\item Erste Phase: alle Strings $a...a^k$ zu Paaren übersetzt
-		\item Zweite Phase: $a^iba^j$ für alle $i,j \in [0,k]$ wird ein Paar erstellt
-		\item $m \in \Omega(\sum_{z=1}^k z + (k+1)^2) = \Omega(k^2)$
-		\item $m \in \Omega(n^{2/3})$
+		\item Erste Phase: alle Strings $a...a^k$ zu Paaren übersetzt \linebreak \Hint{($k$ Paare generiert)}
+		\item Zweite Phase: $a^iba^j$ für alle $i,j \in [0,k]$ wird ein Paar erstellt \linebreak \Hint{($(k+1)^2$ Paare generiert)}
+		\item $m \in \Omega(k + (k+1)^2) = \Omega(k^2)$
+		\item $m \in \Omega(n^{2/3})$ \Hint{$n \in \Theta(k^3)$}
 	\end{itemize}
 \end{block}
 \end{frame}
@@ -223,7 +223,7 @@
 		\alert<4>{$m \in \mathcal{O}(p)$} \hfill  \alert<2>{$g \in \mathcal{O}((\frac{n}{m^*})^{\frac{1}{3}})$} \hfill \alert<2>{$p \in \mathcal{O}(m^*g^2)$} \linebreak
 		\Gap
 		\visible<2->{\linebreak $\Rightarrow p \in \mathcal{O}(m^*(\frac{n}{m^*})^{\frac{2}{3}})$}
-		\visible<3->{\linebreak $\Rightarrow p \in \mathcal{O}(m^*(\frac{n}{\alert<3>{log(n)}})^{\frac{2}{3}})$ \Hint{(mk-Lemma)}}
+		\visible<3->{\linebreak $\Rightarrow p \in \mathcal{O}(m^*(\frac{n}{\alert<3>{log(n)}})^{\frac{2}{3}})$ \Hint{(Lemma 1)}}
 		\visible<4->{\linebreak $\Rightarrow \alert<4>{m} \in \mathcal{O}(m^*(\frac{n}{log(n)})^{\frac{2}{3}})$}
 		\visible<5->{\linebreak $\Rightarrow a(n) = \max\limits_{\alpha \in \Sigma^n} \frac{m}{m^*} \in \mathcal{O}((\frac{n}{log(n)})^{\frac{2}{3}})$ $\qed$}
 		

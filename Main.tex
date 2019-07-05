@@ -35,7 +35,7 @@
 \newcommand{\Hint}[1]{\textcolor{gray}{#1}}
 
 \newboolean{WithComments}
-\setboolean{WithComments}{true}
+\setboolean{WithComments}{false}
 \newcommand{\PDFC}[1]{
 	\ifthenelse{\boolean{WithComments}}{
 		\pdfcomment[color=red,icon=Note]{#1}
@@ -44,6 +44,9 @@
 	}
 }
 % \newcommand{\PDFC}[1]{}
+
+\input{Sections/Contents.tex}
+
 
 \section{Motivation und Anwendung}
 
@@ -68,6 +71,7 @@
 		\item LZ78
 		\item Bisection 
 		\item Sequential
+		\item LZ77 (Abwandlung)
 		\item Global algorithms
 		% \setlength{\itemindent}{1cm}
 		\begin{itemize}

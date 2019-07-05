@@ -98,8 +98,15 @@
 \end{frame}
 
 \begin{frame}{\FrameName}
-	\begin{block}{Lower bound}
-    \Gap
-    
+	\begin{block}{Lower bound (Beweisskizze)}
+    \begin{itemize}[<+->]
+      \item $\alpha = x^n$ mit $n = 5^{2^k}$
+      \item $m = 5 \cdot 2^k$
+      \item $m^* = 3log_3(n) + o(log(n)) $
+      \item \only<4>{$a(n) = \max\limits_{\alpha \in \Sigma^n} \frac{m}{m^*}$}
+      \only<5>{$a(n) \ge \frac{5 \cdot 2^k}{3log_3(5^{2^k})}$}
+      \only<6>{$a(n) \ge \frac{5 log(3)}{3log(5)}$}
+      \only<7>{$a(n) \ge \frac{5 log(3)}{3log(5)} \approx 1,137...$ \Hint{(Konstant!)}}
+    \end{itemize}
 \end{block}
 \end{frame}
